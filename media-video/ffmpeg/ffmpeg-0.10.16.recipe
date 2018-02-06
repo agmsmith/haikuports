@@ -11,6 +11,7 @@ LICENSE="GNU LGPL v2.1
 REVISION="1"
 SOURCE_URI="http://www.ffmpeg.org/releases/ffmpeg-$portVersion.tar.bz2"
 CHECKSUM_SHA256="e77823cbd58dfdb61f88059476070bc432d80e3821c14abcf804ef709d2f3fd1"
+REVISION="2"
 SOURCE_DIR="ffmpeg-$portVersion"
 PATCHES="ffmpeg-$portVersion.patchset"
 
@@ -35,7 +36,6 @@ PROVIDES="
 REQUIRES="
 	haiku$secondaryArchSuffix
 	lib:libbz2$secondaryArchSuffix
-	lib:libmodplug$secondaryArchSuffix
 	lib:libogg$secondaryArchSuffix
 	lib:libspeex$secondaryArchSuffix
 	lib:libtheoradec$secondaryArchSuffix
@@ -63,7 +63,6 @@ REQUIRES_devel="
 
 BUILD_REQUIRES="
 	devel:libbz2$secondaryArchSuffix
-	devel:libmodplug$secondaryArchSuffix
 	devel:libogg$secondaryArchSuffix
 	devel:libspeex$secondaryArchSuffix
 	devel:libtheora$secondaryArchSuffix
@@ -99,6 +98,7 @@ PATCH()
 BUILD()
 {
 	# not an autotools configure
+	# AGMS20180206 Removed --enable-libmodplug due to bugs with big metadata MP3 files.
 	./configure \
 		--prefix=$prefix \
 		--bindir=$binDir \
@@ -109,7 +109,6 @@ BUILD()
 		--mandir=$manDir \
 		--disable-debug \
 		--enable-shared \
-		--enable-libmodplug \
 		--enable-libvorbis \
 		--enable-libspeex \
 		--enable-libtheora \

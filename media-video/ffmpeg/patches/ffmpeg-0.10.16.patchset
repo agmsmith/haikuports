@@ -1,4 +1,4 @@
-From 43d544a54296b713901bfc8a262ef1d73c9ea3a1 Mon Sep 17 00:00:00 2001
+From de7fd129130ad34e7a3261b5c93e280da65fdc7c Mon Sep 17 00:00:00 2001
 From: Adrien Destugues <pulkomandy@gmail.com>
 Date: Sun, 30 Aug 2015 13:15:31 +0200
 Subject: applying patch ffmpeg-0.10.14-gcc2.patch
@@ -1461,10 +1461,10 @@ index 6100fbc..bb36732 100644
      if (t)
          return t;
 -- 
-2.7.0
+2.16.1
 
 
-From f007c9b15d9adb8371eb956661c75dbe534a4c1d Mon Sep 17 00:00:00 2001
+From 798fd3ad79245e354645af7c588b912bc2ade825 Mon Sep 17 00:00:00 2001
 From: Adrien Destugues <pulkomandy@gmail.com>
 Date: Sun, 30 Aug 2015 13:58:56 +0200
 Subject: Fix "undefined reference"s when building with gcc2.
@@ -1734,5 +1734,31 @@ index 7b3d63d..1eaa391 100644
      REGISTER_PROTOCOL (UDP, udp);
  }
 -- 
-2.7.0
+2.16.1
+
+
+From 5c64782789ed537ca0d9452679241974c217ce77 Mon Sep 17 00:00:00 2001
+From: "Alexander G. M. Smith" <agmsmith@ncf.ca>
+Date: Tue, 6 Feb 2018 16:54:39 -0500
+Subject: =?UTF-8?q?Reenable=20the=20check=20for=20libmodplug=20inclusion,?=
+ =?UTF-8?q?=20since=20we=20sometimes=20don't=0Awant=20it=20(has=20bugs=20w?=
+ =?UTF-8?q?ith=20MP3s=20which=20have=20huge=20metadata=20tags).?=
+
+
+diff --git a/libavformat/allformats.c b/libavformat/allformats.c
+index 1eaa391..7e74678 100644
+--- a/libavformat/allformats.c
++++ b/libavformat/allformats.c
+@@ -255,7 +255,9 @@ void av_register_all(void)
+     REGISTER_MUXDEMUX (YUV4MPEGPIPE, yuv4mpegpipe);
+ 
+     /* external libraries */
++#if CONFIG_LIBMODPLUG
+     REGISTER_DEMUXER  (LIBMODPLUG, libmodplug);
++#endif
+ #if __GNUC__ > 2
+     REGISTER_MUXDEMUX (LIBNUT, libnut);
+ #endif
+-- 
+2.16.1
 
