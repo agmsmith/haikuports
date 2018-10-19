@@ -1,0 +1,43 @@
+From a57880bd71ca4c1ee228783fc787f32d6e7c055e Mon Sep 17 00:00:00 2001
+From: "Alexander G. M. Smith" <agmsmith@ncf.ca>
+Date: Sun, 14 Nov 2021 10:47:15 -0400
+Subject: [PATCH] Vision: Add scripting command 'SBMT' to send arbitrary text.
+
+For the BeShare to IRC bridge, we need to send text received from the
+BeShare end.  Add a BeOS/Haiku BMessage scripting command using the
+'SBMT' code to send the attached text.  Vision has the same function
+but with the M_SUBMIT enum, which is just a number and hard to use
+with the 'hey' command.  Also add a note to the about box about it
+being hacked to do that.
+---
+ src/ClientAgent.cpp | 1 +
+ src/Vision.cpp      | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/src/ClientAgent.cpp b/src/ClientAgent.cpp
+index 761e304..956e812 100644
+--- a/src/ClientAgent.cpp
++++ b/src/ClientAgent.cpp
+@@ -666,6 +666,7 @@ void ClientAgent::MessageReceived(BMessage* msg)
+ 		fHistory->NextBuffer(fInput);
+ 	} break;
+ 
++	case 'SBMT':
+ 	case M_SUBMIT: {
+ 		const char* buffer(NULL);
+ 		bool clear(true), add2history(true);
+diff --git a/src/Vision.cpp b/src/Vision.cpp
+index 4840b18..39c22d6 100644
+--- a/src/Vision.cpp
++++ b/src/Vision.cpp
+@@ -711,6 +711,7 @@ void VisionApp::AboutRequested()
+ 	fAboutWin->SetVersion(VERSION_STRING);
+ 	fAboutWin->AddCopyright(2017, "The Vision Team");
+ 	fAboutWin->AddAuthors(kAuthors);
++	fAboutWin->AddText("Hacked up by AGMS to sent text via 'SBMT' scripting command.");
+ 	fAboutWin->AddText(B_TRANSLATE(
+ 		"Brought to you in part by contributions from:\n"
+ 		"Seth Flaxman (Flax)\n"
+-- 
+2.30.2
+

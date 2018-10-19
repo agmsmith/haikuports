@@ -2,15 +2,18 @@ SUMMARY="A fast and full-featured native IRC client"
 DESCRIPTION="Vision is an IRC (Internet Relay Chat) client, originally for \
 BeOS, now for Haiku. The goal of this project is to provide the Haiku \
 community with an elegant, fast, and - most importantly - stable client to \
-communicate with other users and make new friends around the world."
+communicate with other users and make new friends around the world.  \
+This version hacked up by AGMS to support the 'SBMT' command so that Hey can \
+send IRC messages on your behalf."
 HOMEPAGE="https://github.com/HaikuArchives/Vision/"
 COPYRIGHT="1999-2021 The Vision Team"
 LICENSE="MPL v1.1"
-REVISION="2"
+REVISION="3"
 srcGitRev="959a5bb9f18975d8246411ff9082cd98325d0b44"
 SOURCE_URI="https://github.com/HaikuArchives/Vision/archive/$srcGitRev.tar.gz"
 CHECKSUM_SHA256="0a93578245994b5d18b8d880f9c55be30faf10ad1e148030dade441aa6aba579"
 SOURCE_DIR="Vision-$srcGitRev"
+PATCHES="vision-0.10.6.patchset"
 
 ARCHITECTURES="all"
 
