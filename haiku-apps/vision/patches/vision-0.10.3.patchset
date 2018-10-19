@@ -1,0 +1,24 @@
+From 0cfdba1ff9ed5b9bc2fe6e5f81f57df6ac28c5ec Mon Sep 17 00:00:00 2001
+From: "Alexander G. M. Smith" <agmsmith@ncf.ca>
+Date: Fri, 19 Oct 2018 13:03:29 -0400
+Subject: =?UTF-8?q?Hack=20up=20the=20M=5FSUBMIT=20case=20to=20allow=20an?=
+ =?UTF-8?q?=20alphabetic=20scripting=20verb=20so=20that=0AHey=20can=20send?=
+ =?UTF-8?q?=20it=20a=20command=20using=20'SBMT',=20which=20will=20then=20s?=
+ =?UTF-8?q?end=20the=20attached=0Atext=20to=20the=20IRC=20system.?=
+
+
+diff --git a/src/ClientAgent.cpp b/src/ClientAgent.cpp
+index 761e304..956e812 100644
+--- a/src/ClientAgent.cpp
++++ b/src/ClientAgent.cpp
+@@ -666,6 +666,7 @@ void ClientAgent::MessageReceived(BMessage* msg)
+ 		fHistory->NextBuffer(fInput);
+ 	} break;
+ 
++	case 'SBMT':
+ 	case M_SUBMIT: {
+ 		const char* buffer(NULL);
+ 		bool clear(true), add2history(true);
+-- 
+2.19.1
+
