@@ -1,5 +1,7 @@
 SUMMARY="A native file sharing and chat application"
 DESCRIPTION="BeShare is a BeOS/Haiku-native file sharing program. \
+This is a hacked up version by AGMS to change the port numbers to start at \
+7050 instead of 7000. \
 It operates similarly to other such programs (IRC, Napster, Hotline, etc) \
 but with a few advantages:
 
@@ -25,11 +27,12 @@ COPYRIGHT="1999-2012 Jeremy Friesner"
 LICENSE="Public Domain
 	libsanta"
 # Use revision 3+ to take priority over existing 3.04 versions.  AGMS20210622
-REVISION="3"
+REVISION="4"
 SOURCE_URI="http://web.ncf.ca/au829/BeOS/BeShare_3.04.zip"
 CHECKSUM_SHA256="37b9e590d2f3f5ce1395fdb6a31e8849ce0d286a79a53908476ea70f942987a2"
 SOURCE_FILENAME="BeShare_3.04.zip"
 SOURCE_DIR="BeShare"
+PATCHES="beshare-3.04.patchset"
 
 ADDITIONAL_FILES="beshare-post-install.sh"
 POST_INSTALL_SCRIPTS="$relativePostInstallDir/beshare-post-install.sh"
